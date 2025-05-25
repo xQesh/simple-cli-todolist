@@ -1,13 +1,12 @@
 {
     "1": {
-        "title": "my first task",
-        "description": "xpp",
-        "completed": false
+        "title": "dinner",
+        "description": "make dinner for family",
+        "completed": true
     },
-
     "2": {
-        "title": "my second task",
-        "description": "lool",
+        "title": "go to cinema",
+        "description": "bring friends and watch nice movie",
         "completed": true
     }
 }

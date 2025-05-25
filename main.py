@@ -84,8 +84,42 @@ class TasksHandler:
             print('New task successfully created')
             time.sleep(2)
 
-    def edit():
-        pass
+    def edit(self, id):
+            data = self.get()
+            for task_id, info in data.items():
+                if task_id == id:
+                    os.system('cls')
+                    print('Current title: ', info['title'])
+                    title = input('New title: ')
+
+                    if title.strip() == "":
+                        pass
+                    else:
+                        info['title'] = title
+
+                    print('Current description: ', info['description'])
+                    description = input('New description: ')
+
+                    if description.strip() == "":
+                        pass
+                    else:
+                        info['description'] = description
+
+                    status = input('Completed? ( yes | no ): ')
+
+                    if status == "yes":
+                        info['completed'] = True
+                    elif status == "no":
+                        info['completed'] = False
+
+                    self.upload(data)
+
+                    if DEV_MODE:
+                        print('Task edited successfully')
+                        time.sleep(2)
+
+                    return 
+ 
 
     def delete(self, id):
         data = self.get()
@@ -95,7 +129,7 @@ class TasksHandler:
         self.upload(data)
 
         if DEV_MODE:
-            print("Task deleted successfully.")
+            print('Task deleted successfully')
             time.sleep(2)
 
 class Main:
@@ -132,9 +166,12 @@ class Main:
                 while checking_details:
                     handler.detailed_mode(choice_main)
                     print('-------------------')
-                    choice_detailed = input('Option ( delete | back ): ')
+                    choice_detailed = input('Option ( edit | delete | back ): ')
 
-                    if choice_detailed == 'delete':
+                    if choice_detailed == 'edit':
+                        checking_details = False
+                        handler.edit(choice_main)
+                    elif choice_detailed == 'delete':
                         checking_details = False
                         handler.delete(choice_main)
                     elif choice_detailed == 'back':
