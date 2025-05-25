@@ -87,8 +87,16 @@ class TasksHandler:
     def edit():
         pass
 
-    def delete():
-        pass
+    def delete(self, id):
+        data = self.get()
+
+        del data[id]
+        
+        self.upload(data)
+
+        if DEV_MODE:
+            print("Task deleted successfully.")
+            time.sleep(2)
 
 class Main:
     def __init__(self):
