@@ -1,0 +1,1 @@
+Remember to enable DEV_MODE version if want to get additional app prints.
